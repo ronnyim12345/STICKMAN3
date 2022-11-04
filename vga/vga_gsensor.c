@@ -5,6 +5,8 @@
 // Test program for use with the DE1-SoC University Computer
 int main(int argc,char ** argv) {
 	
+	// this is a test for git
+	
 	// vga variables
     void *virtual_base;
     int fd;
