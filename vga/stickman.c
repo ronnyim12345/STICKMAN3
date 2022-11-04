@@ -10,6 +10,7 @@
 #define HATCHET 1
 #define KEY 2
 int i;
+int* p;
 
 // constructor for the Stickman object
 Stickman* Stickman_create(int x, int y) {
@@ -21,9 +22,11 @@ Stickman* Stickman_create(int x, int y) {
 	stickman->hasHatchet = 0;
 	stickman->hasKey = 0;
 	
-	// initialize inventory to empty ( all zeros )
-	for (i = 0; i < 5; i++) {
-		stickman->inventory[i] = 0;
+	// dynamically allocate space for inventory property
+	stickman->inventory = (int*)malloc(5 * sizeof(int));
+	// initialize each inventory index to zero
+	for (p = stickman->inventory; *p; p++) {
+		*p = 0;
 	}
 	
 	return stickman;
@@ -38,6 +41,7 @@ void Stickman_init(Stickman* self, int x, int y) {
 // deconstructor for the Stickman object
 void Stickman_destroy(Stickman* self) {
 	if (self) {
+		free(self->inventory);
 		free(self);
 	}
 }
@@ -67,12 +71,15 @@ void Stickman_collect_key(Stickman* self) {
 }
 
 void Stickman_display_info(Stickman* self) {
-    printf("Stickman Info:\nx: %d y: %d hasHatchet: %d hasKey: %d\n", self->x, self->y, self->hasHatchet, self->hasKey);
-	//printf("Inventory: [ %d %d %d ]", self->inventory[0], self->inventory[1], self->inventory[2]);
-	
-	// for (i = 0; i < (sizeof(self->inventory)/sizeof(self->inventory[0])); i++) {
-		// printf("%d ", self->inventory[i]);
+    printf("\nStickman Info:\nx: %d y: %d hasHatchet: %d hasKey: %d\n", self->x, self->y, self->hasHatchet, self->hasKey);
+	printf("Inventory: [ ");
+	// for (p = self->inventory; *p; p++) {
+		// printf("%d ", *p);
 	// }
+	for (i = 0; i < 5; i++) {
+		printf("%d ", self->inventory[i]);
+	}
+	printf("]\n");
 }
 
 

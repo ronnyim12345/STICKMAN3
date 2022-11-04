@@ -16,7 +16,7 @@ struct _Stickman {
 	short hasHatchet;
 	short hasKey;
 	// array for inventory where HATCHET = 1, KEY = 2
-	int inventory[5];
+	int* inventory;
 };
 
 Stickman* Stickman_create(int x, int y);
