@@ -16,6 +16,8 @@ int main(int argc,char ** argv) {
 	const int mg_per_digi = 4;
 	uint16_t szXYZ[3];
 	int cnt=0, max_cnt=0;
+
+	// this is a test for git
   	
 	/****************************************************************************************
 	* VGA Initializations
