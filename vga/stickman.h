@@ -1,9 +1,9 @@
+#ifndef STICKMAN_H
+#define STICKMAN_H
 /****************************************************************************************
  * stickman.h
  * Stores the declarations for the properties and methods of the Stickman object
 ****************************************************************************************/
-#ifndef STICKMAN_H
-#define STICKMAN_H
 
 typedef struct _Stickman Stickman;
 

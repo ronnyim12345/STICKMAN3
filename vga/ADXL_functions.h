@@ -1,3 +1,5 @@
+#ifndef ADXL_FUNCTIONS_H
+#define ADXL_FUNCTIONS_H
 /****************************************************************************************
  * ADXL_functions.h
  * Stores all functions necessary for processing the 3-axis acceleration data from the
@@ -52,3 +54,5 @@ bool ADXL345_REG_MULTI_READ(int file, uint8_t readaddr,uint8_t readdata[], uint8
 		
 	return bSuccess;
 }
+
+#endif //ADXL_FUNCTIONS_H

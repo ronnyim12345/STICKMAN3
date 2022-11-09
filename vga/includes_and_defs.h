@@ -1,3 +1,5 @@
+#ifndef INCLUDES_AND_DEFS_H
+#define INCLUDES_AND_DEFS_H
 /****************************************************************************************
  * includes_and_defs.h
  * Stores all preprocessor statements necessary for the program to keep our C file short 
@@ -24,6 +26,7 @@
 
 // object header files
 #include "stickman.h"
+#include "treasure_chest.h"
 
 // defines for memory addressing
 #define HW_REGS_BASE ( 0xFC000000 )
@@ -48,7 +51,12 @@
 #define DELTA_X 3
 #define DELTA_Y 6
 
+// stickman defines
+#define STICKMAN_WIDTH 9
+#define STICKMAN_HEIGHT 26
+
 // inventory defines
 #define HEIGHT_INV_BOX 50
 #define WIDTH_INV_BOX 33
 
+#endif //INCLUDES_AND_DEFS_H

@@ -94,6 +94,11 @@ int main(int argc,char ** argv) {
 	printf("\n\n");
 	Stickman_display_info(stickman);
 	
+	TreasureChest* treasureChest = TreasureChest_create(200, 1);
+	printf("\n\n");
+	TreasureChest_display_info(treasureChest);
+	
+	
 	// gsensor loop to display 3-axis acceleration data
 	while(bSuccess && (max_cnt == 0 || cnt < max_cnt)){
 		if (ADXL345_IsDataReady(file)){
@@ -116,7 +121,20 @@ int main(int argc,char ** argv) {
 				else if ((int16_t)szXYZ[1]*mg_per_digi < -100){
 					y1_new = y1_new+1;
 				}
-			
+				
+				// if stickman tries to go outside window boundaries
+				if ((x1_new + STICKMAN_WIDTH >= X_MAX || x1_new <= 0) || (y1_new >= Y_MAX || y1_new - STICKMAN_HEIGHT <= 0) ) {
+					//reset coordinates before out of bounds
+					x1_new = x1_old;
+					y1_new = y1_old;
+				}
+				
+				// if stickman overlaps with the chest
+				if ((x1_new + STICKMAN_WIDTH >= treasureChest->x - 2 && x1_new <= treasureChest->x + 33) && (y1_new >= treasureChest->y && y1_new - STICKMAN_HEIGHT <= treasureChest->y + 46) ) {
+					//reset coordinates before overlap
+					x1_new = x1_old;
+					y1_new = y1_old;
+				}
 				
 				VGA_stickman(x1_old, y1_old, BLACK, virtual_base);
 
@@ -127,7 +145,6 @@ int main(int argc,char ** argv) {
 				
 				x1_old = x1_new;
 				y1_old = y1_new;
-				
 			}
 		}
 	}

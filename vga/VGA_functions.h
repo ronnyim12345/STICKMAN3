@@ -1,3 +1,5 @@
+#ifndef VGA_FUNCTIONS_H
+#define VGA_FUNCTIONS_H
 /****************************************************************************************
  * VGA_functions.h
  * Stores all functions necessary for drawing objects on the VGA display 
@@ -190,6 +192,8 @@ void VGA_treasureChest(int x1, int y1, void *virtual_base)
 	// x1 has to be at least 2 greater than 0 and at least 32 less than 320
 	// y1 has to be at least 46 less than 480
 	
+	// dimensions: 35 by 45 pixels
+	
 	// draw main box
 	VGA_unfilled_box(x1, y1, x1+30, y1+39, 3, WHITE, BLACK, virtual_base);
 	// draw main wooden body
@@ -351,16 +355,18 @@ void VGA_tree(int x1, int y1, void *virtual_base)
 // REMEMBER TO ERASE HIM TOO
 void VGA_stickman(int x1, int y1, short color, void *virtual_base)
 {
-//left leg
-VGA_line(x1, y1, x1+4, y1-8, color, virtual_base);
-//right leg
-VGA_line(x1+8, y1, x1+4, y1-8, color, virtual_base);
-//torso
-VGA_line(x1+4, y1-8, x1+4, y1-16, color, virtual_base);
-//arms
-VGA_line(x1, y1-12, x1+8, y1-12, color, virtual_base);
-//head
-VGA_box(x1, y1-26, x1+8, y1-16, color, virtual_base);
+	//dimensions: 10 by 26
+	
+	//left leg
+	VGA_line(x1, y1, x1+4, y1-8, color, virtual_base);
+	//right leg
+	VGA_line(x1+8, y1, x1+4, y1-8, color, virtual_base);
+	//torso
+	VGA_line(x1+4, y1-8, x1+4, y1-16, color, virtual_base);
+	//arms
+	VGA_line(x1, y1-12, x1+8, y1-12, color, virtual_base);
+	//head
+	VGA_box(x1, y1-26, x1+8, y1-16, color, virtual_base);
 
 }
 
@@ -369,20 +375,21 @@ VGA_box(x1, y1-26, x1+8, y1-16, color, virtual_base);
 ****************************************************************************************/
 void VGA_drawAllObjects(void *virtual_base)
 {
-// Clear the screen
-VGA_clear(0, 0, X_MAX, Y_MAX, virtual_base);
+	// Clear the screen
+	VGA_clear(0, 0, X_MAX, Y_MAX, virtual_base);
 
-// draw inventory and its spaces
-VGA_inventory(virtual_base);
-// draw treasure chest, comprised of a main box and two superimposed boxes
-VGA_treasureChest(200, 1, virtual_base);
-// draw locked door
-VGA_lockedDoor(260, 150, virtual_base);
-// draw hatchet
-VGA_hatchet(50, 300, virtual_base);
-// draw river
-VGA_river(130, virtual_base);
-// draw tree
-VGA_tree(100, 120, virtual_base);
+	// draw inventory and its spaces
+	VGA_inventory(virtual_base);
+	// draw treasure chest, comprised of a main box and two superimposed boxes
+	VGA_treasureChest(200, 1, virtual_base);
+	// draw locked door
+	VGA_lockedDoor(260, 150, virtual_base);
+	// draw hatchet
+	VGA_hatchet(50, 300, virtual_base);
+	// draw river
+	VGA_river(130, virtual_base);
+	// draw tree
+	VGA_tree(100, 120, virtual_base);
 }
 	
+#endif //VGA_FUNCTIONS_H
