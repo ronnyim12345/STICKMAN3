@@ -26,7 +26,11 @@
 
 // object header files
 #include "stickman.h"
-#include "treasure_chest.h"
+#include "tree.h"
+#include "hatchet.h"
+#include "door.h"
+#include "river.h"
+#include "treasureChest.h"
 
 // defines for memory addressing
 #define HW_REGS_BASE ( 0xFC000000 )

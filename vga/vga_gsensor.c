@@ -98,6 +98,7 @@ int main(int argc,char ** argv) {
 	printf("\n\n");
 	TreasureChest_display_info(treasureChest);
 	
+	int loop = 0;
 	
 	// gsensor loop to display 3-axis acceleration data
 	while(bSuccess && (max_cnt == 0 || cnt < max_cnt)){
@@ -135,6 +136,30 @@ int main(int argc,char ** argv) {
 					x1_new = x1_old;
 					y1_new = y1_old;
 				}
+				
+				
+				//Moving Waves:
+				if(loop == 0){
+					VGA_allWaves(129, BLACK, virtual_base);
+					VGA_allWaves(126, 0X0FFF, virtual_base);
+				}
+				
+				if(loop == 33 || loop == 100){
+					VGA_allWaves(126, BLACK, virtual_base);
+					VGA_allWaves(132, BLACK, virtual_base);
+					VGA_allWaves(129, 0X0FFF, virtual_base);
+				}
+				
+				if(loop == 66){
+					VGA_allWaves(129, BLACK, virtual_base);
+					VGA_allWaves(132, 0X0FFF, virtual_base);
+				}
+				
+				if(loop == 133)
+					loop = -1;
+				
+				loop = loop + 1;
+				
 				
 				VGA_stickman(x1_old, y1_old, BLACK, virtual_base);
 
