@@ -95,6 +95,10 @@ int main(int argc,char ** argv) {
 	Stickman_display_info(stickman);
 	
 	TreasureChest* treasureChest = TreasureChest_create(200, 1);
+	Tree* tree = Tree_create(85, 120);
+	Hatchet* hatchet = Hatchet_create(50, 300);
+	Door* door = Door_create(260, 150);
+	
 	printf("\n\n");
 	TreasureChest_display_info(treasureChest);
 	
@@ -123,19 +127,58 @@ int main(int argc,char ** argv) {
 					y1_new = y1_new+1;
 				}
 				
-				// if stickman tries to go outside window boundaries
+				// if stickman tries to go outside WINDOW BOUNDARIES
 				if ((x1_new + STICKMAN_WIDTH >= X_MAX || x1_new <= 0) || (y1_new >= Y_MAX || y1_new - STICKMAN_HEIGHT <= 0) ) {
 					//reset coordinates before out of bounds
 					x1_new = x1_old;
 					y1_new = y1_old;
 				}
 				
-				// if stickman overlaps with the chest
+				// if stickman overlaps with the CHEST
 				if ((x1_new + STICKMAN_WIDTH >= treasureChest->x - 2 && x1_new <= treasureChest->x + 33) && (y1_new >= treasureChest->y && y1_new - STICKMAN_HEIGHT <= treasureChest->y + 46) ) {
 					//reset coordinates before overlap
 					x1_new = x1_old;
 					y1_new = y1_old;
 				}
+				
+				// if stickman overlaps with the TREE
+				if ((x1_new + STICKMAN_WIDTH >= tree->x - 19 && x1_new <= tree->x + 28) && (y1_new >= tree->y - 70 && y1_new - STICKMAN_HEIGHT <= tree->y) ) {
+					//reset coordinates before overlap
+					x1_new = x1_old;
+					y1_new = y1_old;
+				}
+				
+				// if stickman overlaps with the HATCHET
+				if ((x1_new + STICKMAN_WIDTH >= hatchet->x - 1 && x1_new <= hatchet->x + 10) && (y1_new >= hatchet->y && y1_new - STICKMAN_HEIGHT <= hatchet->y + 45) ) {
+					//reset coordinates before overlap
+					x1_new = x1_old;
+					y1_new = y1_old;
+				}
+				
+				// if stickman overlaps with the DOOR
+				if ((x1_new + STICKMAN_WIDTH >= door->x && x1_new <= door->x + 25) && (y1_new >= door->y && y1_new - STICKMAN_HEIGHT <= door->y + 75) ) {
+					//reset coordinates before overlap
+					x1_new = x1_old;
+					y1_new = y1_old;
+				}
+				
+				// if stickman overlaps with the INVENTORY HEADER
+				if ((x1_new + STICKMAN_WIDTH >= 0 && x1_new <= 43) && (y1_new >= 0 && y1_new - STICKMAN_HEIGHT <= 20) ) {
+					//reset coordinates before overlap
+					x1_new = x1_old;
+					y1_new = y1_old;
+				}
+				
+				// if stickman overlaps with the INVENTORY BOXES
+				if ((x1_new + STICKMAN_WIDTH >= 0 && x1_new <= 35) && (y1_new >= 0 && y1_new - STICKMAN_HEIGHT <= 174) ) {
+					//reset coordinates before overlap
+					x1_new = x1_old;
+					y1_new = y1_old;
+				}
+				
+				
+				
+				
 				
 				
 				//Moving Waves:

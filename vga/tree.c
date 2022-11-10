@@ -33,9 +33,5 @@ void Tree_destroy(Tree* self) {
 
 void Tree_display_info(Tree* self) {
     printf("Tree Info:\nx: %d y: %d\n", self->x, self->y);
-	//printf("Inventory: [ %d %d %d ]", self->inventory[0], self->inventory[1], self->inventory[2]);
 	
-	// for (i = 0; i < (sizeof(self->inventory)/sizeof(self->inventory[0])); i++) {
-		// printf("%d ", self->inventory[i]);
-	// }
 }

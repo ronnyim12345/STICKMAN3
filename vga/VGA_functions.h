@@ -393,6 +393,6 @@ VGA_hatchet(50, 300, virtual_base);
 // draw river
 VGA_river(130, virtual_base);
 // draw tree
-VGA_tree(100, 120, virtual_base);
+VGA_tree(85, 120, virtual_base);
 }
 	
