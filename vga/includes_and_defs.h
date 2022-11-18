@@ -40,6 +40,8 @@
 #define FPGA_CHAR_BASE      0xC9000000
 #define PHYSMEM_32(addr) (*((unsigned int *)(virtual_base + (addr & HW_REGS_MASK))))
 #define PHYSMEM_16(addr) (*((unsigned short *)(virtual_base + (addr & HW_REGS_MASK))))
+#define PHYSMEM_32_reg(addr) (*((unsigned int *)(virtual_base_reg + (addr & HW_REGS_MASK))))
+#define PHYSMEM_16_reg(addr) (*((unsigned short *)(virtual_base_reg + (addr & HW_REGS_MASK))))
 
 // general screen defines
 #define X_MAX 320

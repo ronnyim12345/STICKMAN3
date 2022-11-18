@@ -7,6 +7,7 @@ int main(int argc,char ** argv) {
 	
 	// vga variables
     void *virtual_base;
+	void *virtual_base_reg;
     int fd;
 	// gsensor variables
 	int file;
@@ -17,7 +18,7 @@ int main(int argc,char ** argv) {
 	uint16_t szXYZ[3];
 	int cnt=0, max_cnt=0;
 
-	// this is a test for git
+	int buttons = 0;
   	
 	/****************************************************************************************
 	* VGA Initializations
@@ -48,6 +49,16 @@ int main(int argc,char ** argv) {
 		close( fd );
 		return( 1 );
 	}
+	
+	virtual_base_reg = mmap( NULL, HW_REGS_SPAN, ( PROT_READ | PROT_WRITE ), MAP_SHARED, fd, HW_REGS_BASE );
+	if( virtual_base_reg == MAP_FAILED ) {
+		printf( "ERROR: mmap() failed...\n" );
+		close( fd );
+		return( 1 );
+	}
+    // Set framebuffer addr to beginning of the SRAM
+    PHYSMEM_32_reg(0xff203024) = 0xc8000000;
+    PHYSMEM_32_reg(0xff203020) = 0xc8000000;
 	
 	/****************************************************************************************
 	* Gsensor Initializations 
@@ -111,6 +122,8 @@ int main(int argc,char ** argv) {
 			if (bSuccess){
 				cnt++;
 				//printf("[%d]X=%d mg, Y=%d mg, Z=%d mg\r\n", cnt,(int16_t)szXYZ[0]*mg_per_digi, (int16_t)szXYZ[1]*mg_per_digi, (int16_t)szXYZ[2]*mg_per_digi);
+				
+				buttons = PHYSMEM_32_reg(0xFF200050);
 				
 				// if X is greater than 100
 				if ((int16_t)szXYZ[0]*mg_per_digi > 100){
@@ -176,7 +189,10 @@ int main(int argc,char ** argv) {
 					y1_new = y1_old;
 				}
 				
-				
+				// check for stickman close to collecting the axe
+				if (buttons != 0) {
+					VGA_clear(0, 0, 360, 480, virtual_base);
+				}
 				
 				
 				
@@ -228,6 +244,12 @@ int main(int argc,char ** argv) {
 	
 	
 	if( munmap( virtual_base, HW_REGS_SPAN ) != 0 ) {
+		printf( "ERROR: munmap() failed...\n" );
+		close( fd );
+		return( 1 );
+	}
+	
+	if( munmap( virtual_base_reg, HW_REGS_SPAN ) != 0 ) {
 		printf( "ERROR: munmap() failed...\n" );
 		close( fd );
 		return( 1 );
