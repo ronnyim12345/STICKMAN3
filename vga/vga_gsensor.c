@@ -166,6 +166,14 @@ int main(int argc,char ** argv) {
 					//reset coordinates before overlap
 					x1_new = x1_old;
 					y1_new = y1_old;
+					// check for stickman close to collecting the hatchet
+					if ( buttons != 0) {
+						// erase hatchet from original postion
+						VGA_box(hatchet->x-2, hatchet->y, hatchet->x+15, hatchet->y+50, BLACK, virtual_base);
+						// draw hatchet in inventory space and update coordinates
+						VGA_hatchet(12, 26, virtual_base);
+						Hatchet_init(hatchet, 12, 26);
+					}
 				}
 				
 				// if stickman overlaps with the DOOR
@@ -189,10 +197,7 @@ int main(int argc,char ** argv) {
 					y1_new = y1_old;
 				}
 				
-				// check for stickman close to collecting the axe
-				if (buttons != 0) {
-					VGA_clear(0, 0, 360, 480, virtual_base);
-				}
+				
 				
 				
 				
