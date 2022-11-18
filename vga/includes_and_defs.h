@@ -31,6 +31,7 @@
 #include "door.h"
 #include "river.h"
 #include "treasureChest.h"
+#include "key.h"
 
 // defines for memory addressing
 #define HW_REGS_BASE ( 0xFC000000 )

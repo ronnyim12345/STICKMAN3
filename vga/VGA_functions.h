@@ -354,6 +354,27 @@ void VGA_tree(int x1, int y1, void *virtual_base)
 	}
 
 }
+
+/****************************************************************************************
+ * Draws a Key Object on screen given a starting point (draws from top left corner of key)
+****************************************************************************************/
+void VGA_key(int x1, int y1, void *virtual_base)
+{	
+	
+	//rod
+	VGA_box(x1, y1, x1+20, y1+6, 0xF800, virtual_base);
+	//1st notch
+	VGA_box(x1+4, y1+6, x1+7, y1+12, 0xF800, virtual_base);
+	//2nd notch
+	VGA_box(x1+10, y1+6, x1+13, y1+12, 0xF800, virtual_base);
+	
+	
+	//handle
+	VGA_box(x1+20, y1-6, x1+29, y1+12, 0xF800, virtual_base);
+	//hole
+	VGA_box(x1+22, y1-3, x1+26, y1+10, BLACK, virtual_base);
+}
+	
 	
 /****************************************************************************************
  * Draws Stick Man on screen given a starting point (draws from bottom left corner of foot)
@@ -394,5 +415,7 @@ VGA_hatchet(50, 300, virtual_base);
 VGA_river(130, virtual_base);
 // draw tree
 VGA_tree(85, 120, virtual_base);
+// draw key
+VGA_key(230, 100, virtual_base);
 }
 	

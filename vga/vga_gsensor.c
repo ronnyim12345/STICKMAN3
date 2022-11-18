@@ -109,9 +109,12 @@ int main(int argc,char ** argv) {
 	Tree* tree = Tree_create(85, 120);
 	Hatchet* hatchet = Hatchet_create(50, 300);
 	Door* door = Door_create(260, 150);
+	Key* key = Key_create(260, 150);
 	
 	printf("\n\n");
 	TreasureChest_display_info(treasureChest);
+	
+	
 	
 	int loop = 0;
 	
