@@ -261,8 +261,8 @@ void VGA_allWaves(int x1, short color, void *virtual_base)
 	VGA_wave(x1+60, 200, color, virtual_base);
 	VGA_wave(x1+70, 250, color, virtual_base);
 	VGA_wave(x1+80, 310, color, virtual_base);
-	VGA_wave(x1+90, 360, color, virtual_base);
-	VGA_wave(x1+100, 400, color, virtual_base);
+	//VGA_wave(x1+90, 360, color, virtual_base);
+	//VGA_wave(x1+100, 400, color, virtual_base);
 	VGA_wave(x1+110, 450, color, virtual_base);
 }
 
@@ -290,6 +290,7 @@ void VGA_river(int x1, void *virtual_base)
 	VGA_line(x1+90, 280, x1+110, 350, 0x0FFF, virtual_base);
 	VGA_line(x1+110, 350, x1+120, 420, 0x0FFF, virtual_base);
 	VGA_line(x1+120, 420, x1+140, 480, 0x0FFF, virtual_base);
+	
 	
 }
 
@@ -394,6 +395,21 @@ VGA_line(x1, y1-12, x1+8, y1-12, color, virtual_base);
 VGA_box(x1, y1-26, x1+8, y1-16, color, virtual_base);
 
 }
+
+/****************************************************************************************
+ * Draws THE BRIDGE on screen given a starting point (draws from top left corner of bridge)
+****************************************************************************************/
+
+void VGA_bridge(void *virtual_base)
+{
+	unsigned int i;
+	for (i=0; i <= 70; i++){
+		VGA_line(210+(i*10/70), 350+i, 242+(i*10/70), 350+i, 0xF800, virtual_base);
+	}
+
+}
+
+
 
 /****************************************************************************************
  * Draws all the objects on the screen at the beginning of game

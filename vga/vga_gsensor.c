@@ -201,9 +201,67 @@ int main(int argc,char ** argv) {
 				}
 				
 				
+				// if stickman overlaps with the RIVER
+				unsigned int i;
+				for (i=0; i <= 70; i++){
+					
+					//TOP-MOST RIVER SEGMENT:
+					if ((x1_new + STICKMAN_WIDTH >= (130 + (i*20/70)) && x1_new <= (160 + (i*20/70)) ) && (y1_new >= i && y1_new - STICKMAN_HEIGHT <= (i+1)) ) {
+						//reset coordinates before overlap
+						x1_new = x1_old;
+						y1_new = y1_old;
+					}
+					
+					//2ND RIVER SEGMENT:
+					if ((x1_new + STICKMAN_WIDTH >= (150 + (i*10/70)) && x1_new <= (180 + (i*10/70)) ) && (y1_new >= (70+i) && y1_new - STICKMAN_HEIGHT <= (71+i)) ) {
+						//reset coordinates before overlap
+						x1_new = x1_old;
+						y1_new = y1_old;
+					}
+					
+					//3RD RIVER SEGMENT:
+					if ((x1_new + STICKMAN_WIDTH >= (160 + (i*20/70)) && x1_new <= (190 + (i*20/70)) ) && (y1_new >= (140+i) && y1_new - STICKMAN_HEIGHT <= (141+i)) ) {
+						//reset coordinates before overlap
+						x1_new = x1_old;
+						y1_new = y1_old;
+					}
+					
+					//4TH RIVER SEGMENT:
+					if ((x1_new + STICKMAN_WIDTH >= (180 + (i*10/70)) && x1_new <= (210 + (i*10/70)) ) && (y1_new >= (210+i) && y1_new - STICKMAN_HEIGHT <= (211+i)) ) {
+						//reset coordinates before overlap
+						x1_new = x1_old;
+						y1_new = y1_old;
+					}
+					
+					//5TH RIVER SEGMENT:
+					if ((x1_new + STICKMAN_WIDTH >= (190 + (i*20/70)) && x1_new <= (220 + (i*20/70)) ) && (y1_new >= (280+i) && y1_new - STICKMAN_HEIGHT <= (281+i)) ) {
+						//reset coordinates before overlap
+						x1_new = x1_old;
+						y1_new = y1_old;
+					}
+					
+					//6TH ONE IS THE BRIDGE !!!
+					//(DRAWN IN VGA_functions.h)
+					
+					
+					//7TH RIVER SEGMENT:
+					if ((x1_new + STICKMAN_WIDTH >= (220 + (i*20/70)) && x1_new <= (253 + (i*20/70)) ) && (y1_new >= (420+i) && y1_new - STICKMAN_HEIGHT <= (421+i)) ) {
+						//reset coordinates before overlap
+						x1_new = x1_old;
+						y1_new = y1_old;
+					}
+					
+					
+				}
 				
+				//draws pegs:
+				VGA_box(210, 340, 212, 350, 0xF800, virtual_base);
+				VGA_box(220, 410, 222, 420, 0xF800, virtual_base);
+				VGA_box(240, 340, 242, 350, 0xF800, virtual_base);
+				VGA_box(250, 410, 252, 420, 0xF800, virtual_base);
 				
-				
+				//draw bridge:
+				VGA_bridge(virtual_base);
 				
 				//Moving Waves:
 				if(loop == 0){
