@@ -114,8 +114,6 @@ int main(int argc,char ** argv) {
 	printf("\n\n");
 	TreasureChest_display_info(treasureChest);
 	
-	
-	
 	int loop = 0;
 	
 	// gsensor loop to display 3-axis acceleration data
@@ -162,6 +160,17 @@ int main(int argc,char ** argv) {
 					//reset coordinates before overlap
 					x1_new = x1_old;
 					y1_new = y1_old;
+					// check for stickman close to tree and already has the hatchet
+					if (buttons != 0 && stickman->hasHatchet) {
+						// erase tree
+						VGA_box(tree->x-19, tree->y-70, tree->x+28, tree->y, BLACK, virtual_base);
+						// update coordinates
+						Tree_init(tree, 0, 0);
+						// draw 3 logs in inventory
+						VGA_log(3, 101, virtual_base);
+						VGA_log(3+8, 101, virtual_base);
+						VGA_log(3+4, 83, virtual_base);
+					}
 				}
 				
 				// if stickman overlaps with the HATCHET
@@ -170,12 +179,14 @@ int main(int argc,char ** argv) {
 					x1_new = x1_old;
 					y1_new = y1_old;
 					// check for stickman close to collecting the hatchet
-					if ( buttons != 0) {
+					if (buttons != 0) {
 						// erase hatchet from original postion
 						VGA_box(hatchet->x-2, hatchet->y, hatchet->x+15, hatchet->y+50, BLACK, virtual_base);
 						// draw hatchet in inventory space and update coordinates
-						VGA_hatchet(12, 26, virtual_base);
-						Hatchet_init(hatchet, 12, 26);
+						VGA_hatchet(12, 25, virtual_base);
+						Hatchet_init(hatchet, 12, 25);
+						// set hasHatchet to true
+						Stickman_collect_hatchet(stickman);
 					}
 				}
 				

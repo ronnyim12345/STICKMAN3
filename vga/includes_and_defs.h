@@ -51,6 +51,7 @@
 #define WHITE 0xFFFF
 #define BROWN 0xF900
 #define YELLOW 0xFA701
+#define BLUE 0x0FFF
 
 // box defines
 #define BOX_WIDTH 25

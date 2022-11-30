@@ -239,9 +239,39 @@ void VGA_hatchet(int x1, int y1, void *virtual_base)
 }
 
 /****************************************************************************************
+ * Draws a log on screen given a starting point (top left corner)
+****************************************************************************************/
+void VGA_log(int x1, int y1, void *virtual_base)
+{
+	// draw spiral cut
+	VGA_unfilled_box(x1, y1, x1+9, y1+18, 2, BROWN, WHITE, virtual_base);
+	VGA_box(x1+3, y1+3, x1+6, y1+15, BROWN, virtual_base);
+	VGA_box(x1+4, y1+6, x1+5, y1+12, WHITE, virtual_base);
+	
+	// draw top parallel line
+	VGA_line(x1, y1, x1+15, y1-8, BROWN, virtual_base);
+	// draw bottom parallel line
+	VGA_line(x1+9, y1+18, x1+21, y1+12, WHITE, virtual_base);
+	// draw middle parallel line
+	VGA_line(x1+9, y1, x1+21, y1-7, WHITE, virtual_base);
+	
+	// fill in
+	unsigned int i = 0;
+	for (i = 1; i <= 18; i++) {
+		VGA_line(x1+9, y1+i, x1+21, y1-7+i, BROWN, virtual_base);
+	}
+	for (i = 1; i <= 6; i++) {
+		VGA_line(x1+i, y1, x1+15+i, y1-8, BROWN, virtual_base);
+	}
+	
+	// draw straight lines at the back
+	VGA_line(x1+15, y1-8, x1+21, y1-8, BROWN, virtual_base);
+	VGA_line(x1+21, y1+12, x1+21, y1-8, BROWN, virtual_base);
+}
+
+/****************************************************************************************
  * Draws a Wave Object on screen given a starting point (draws from bottom left corner)
 ****************************************************************************************/
-//PRO-TIP: 0x0FFF IS BLUE !!!
 void VGA_wave(int x1, int y1, short color, void *virtual_base)
 {
 	VGA_line(x1, y1, x1+4, y1-4, color, virtual_base);
