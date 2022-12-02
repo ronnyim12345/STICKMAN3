@@ -454,7 +454,7 @@ void VGA_drawAllObjects(void *virtual_base)
 	// draw tree
 	VGA_tree(85, 120, virtual_base);
 	// draw key
-	VGA_key(230, 100, virtual_base);
+	//VGA_key(230, 100, virtual_base);
 }
 
 /****************************************************************************************

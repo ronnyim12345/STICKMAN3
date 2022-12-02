@@ -109,7 +109,7 @@ int main(int argc,char ** argv) {
 	Tree* tree = Tree_create(85, 120);
 	Hatchet* hatchet = Hatchet_create(50, 300);
 	Door* door = Door_create(260, 150);
-	Key* key = Key_create(260, 150);
+	Key* key = Key_create(200, 8);
 	
 	printf("\n\n");
 	TreasureChest_display_info(treasureChest);
@@ -154,6 +154,30 @@ int main(int argc,char ** argv) {
 						//reset coordinates before overlap
 						x1_new = x1_old;
 						y1_new = y1_old;
+						if (buttons != 0 ) {
+							// erase chest
+							VGA_box(treasureChest->x-3, treasureChest->y, treasureChest->x+32, treasureChest->y+50, BLACK, virtual_base);
+							// update coordinates
+							TreasureChest_init(treasureChest, 0, 0);
+							//draws the key:
+							VGA_key(200, 8, virtual_base);
+						}
+					}
+					
+					// if stickman overlaps with the KEY
+					if ((x1_new + STICKMAN_WIDTH >= key->x+1 && x1_new <= key->x + 29) && (y1_new >= key->y && y1_new - STICKMAN_HEIGHT <= key->y + 12) ) {
+						//reset coordinates before overlap
+						x1_new = x1_old;
+						y1_new = y1_old;
+						if (buttons != 0 ) {
+							// erase key
+							VGA_box(key->x, key->y-6, key->x+29, key->y+12, BLACK, virtual_base);
+							// update coordinates
+							Key_init(key, 0, 0);
+							//draws the key:
+							VGA_key(3, 144, virtual_base);
+							Stickman_collect_key(stickman);
+						}
 					}
 					
 					// if stickman overlaps with the TREE
