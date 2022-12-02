@@ -107,7 +107,6 @@ void VGA_line(int x1, int y1, int x2, int y2, short line_color, void *virtual_ba
 	}
 }
 
-
 /****************************************************************************************
  * Displays text on the VGA monitor 
 ****************************************************************************************/
@@ -165,10 +164,7 @@ void VGA_clear(int x1, int y1, int x2, int y2, void *virtual_base)
 	* Draw Inventory header and three inventory spaces
 ****************************************************************************************/
 void VGA_inventory(void *virtual_base)
-{
-	//height = 50
-	//width = 33
-	
+{	
 	char text_inventory[40] = "Inventory\0";
 	// draw inventory header box
 	VGA_unfilled_box(1, 1, 43, 20, 1, WHITE, BLACK, virtual_base);
@@ -442,22 +438,39 @@ void VGA_bridge(void *virtual_base)
 ****************************************************************************************/
 void VGA_drawAllObjects(void *virtual_base)
 {
-// Clear the screen
-VGA_clear(0, 0, X_MAX, Y_MAX, virtual_base);
+	// Clear the screen
+	VGA_clear(0, 0, X_MAX, Y_MAX, virtual_base);
 
-// draw inventory and its spaces
-VGA_inventory(virtual_base);
-// draw treasure chest, comprised of a main box and two superimposed boxes
-VGA_treasureChest(200, 1, virtual_base);
-// draw locked door
-VGA_lockedDoor(260, 150, virtual_base);
-// draw hatchet
-VGA_hatchet(50, 300, virtual_base);
-// draw river
-VGA_river(130, virtual_base);
-// draw tree
-VGA_tree(85, 120, virtual_base);
-// draw key
-VGA_key(230, 100, virtual_base);
+	// draw inventory and its spaces
+	VGA_inventory(virtual_base);
+	// draw treasure chest, comprised of a main box and two superimposed boxes
+	VGA_treasureChest(200, 1, virtual_base);
+	// draw locked door
+	VGA_lockedDoor(260, 150, virtual_base);
+	// draw hatchet
+	VGA_hatchet(50, 300, virtual_base);
+	// draw river
+	VGA_river(130, virtual_base);
+	// draw tree
+	VGA_tree(85, 120, virtual_base);
+	// draw key
+	VGA_key(230, 100, virtual_base);
+}
+
+/****************************************************************************************
+ * Clears text and sets each pixel black to then display "Game Over" 
+****************************************************************************************/
+void VGA_game_over(void *virtual_base)
+{
+	char text_game_over[40] = "Game Over\0";
+	// clear the text content
+	VGA_text_clear(virtual_base);
+	// clear screen
+	VGA_box(0, 0, X_MAX, Y_MAX, BLACK, virtual_base);
+	// draw game over text box
+	VGA_unfilled_box(128, 217, 128 + 42, 217 + 19, 1, WHITE, BLACK, virtual_base);
+	// draw text "Game Over"
+	// only from 0,0 to 79,59
+	VGA_text(33, 28, text_game_over, virtual_base);
 }
 	

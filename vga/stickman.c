@@ -8,7 +8,8 @@
 #include "stickman.h"
 
 #define HATCHET 1
-#define KEY 2
+#define LOGS 2
+#define KEY 3
 int i;
 int* p;
 
@@ -20,10 +21,11 @@ Stickman* Stickman_create(int x, int y) {
 	
 	// initialize bools to false
 	stickman->hasHatchet = 0;
+	stickman->hasLogs = 0;
 	stickman->hasKey = 0;
 	
 	// dynamically allocate space for inventory property
-	stickman->inventory = (int*)malloc(5 * sizeof(int));
+	stickman->inventory = (int*)malloc(3 * sizeof(int));
 	// initialize each inventory index to zero
 	for (p = stickman->inventory; *p; p++) {
 		*p = 0;
@@ -46,42 +48,36 @@ void Stickman_destroy(Stickman* self) {
 	}
 }
 
-// sets hasHatchet to true
+// sets hasHatchet to true and fills inventory
 void Stickman_collect_hatchet(Stickman* self) {
 	// set bool
 	self->hasHatchet = 1;
 	// insert hatchet into next available inventory space
-	for (i = 0; i < (sizeof(self->inventory)/sizeof(self->inventory[0])); i++) {
-		if (self->inventory[i] == 0) {
-			self->inventory[i] = HATCHET;
-		}
-	}
+	self->inventory[0] = HATCHET;
 }
 
-// sets hasKey to true
+// sets hasLogs to true and fills inventory
+void Stickman_collect_logs(Stickman* self) {
+	// set bool
+	self->hasLogs = 1;
+	// insert logs into next available inventory space
+	self->inventory[1] = LOGS;
+}
+
+// sets hasKey to true and fills inventory
 void Stickman_collect_key(Stickman* self) {
 	// set bool
 	self->hasKey = 1;
 	// insert key into next available inventory space
-	for (i = 0; i < (sizeof(self->inventory)/sizeof(self->inventory[0])); i++) {
-		if (self->inventory[i] == 0) {
-			self->inventory[i] = KEY;
-		}
-	}
+	self->inventory[2] = KEY;
 }
 
+// displays all info
 void Stickman_display_info(Stickman* self) {
-    printf("\nStickman Info:\nx: %d y: %d hasHatchet: %d hasKey: %d\n", self->x, self->y, self->hasHatchet, self->hasKey);
+    printf("\nStickman Info:\nx: %d y: %d hasHatchet: %d hasLogs: %d hasKey: %d\n", self->x, self->y, self->hasHatchet, self->hasKey, self->hasLogs);
 	printf("Inventory: [ ");
-	// for (p = self->inventory; *p; p++) {
-		// printf("%d ", *p);
-	// }
-	for (i = 0; i < 5; i++) {
+	for (i = 0; i < 3; i++) {
 		printf("%d ", self->inventory[i]);
 	}
 	printf("]\n");
 }
-
-
-
-

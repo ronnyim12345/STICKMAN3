@@ -14,8 +14,9 @@ struct _Stickman {
 	int y;
 	// bools for whether Stickman has inventory objects
 	short hasHatchet;
+	short hasLogs;
 	short hasKey;
-	// array for inventory where HATCHET = 1, KEY = 2
+	// array for inventory where HATCHET = 1, LOGS = 2, KEY = 3
 	int* inventory;
 };
 
@@ -24,6 +25,7 @@ void Stickman_init(Stickman* self, int x, int y);
 void Stickman_destroy(Stickman* self);
 
 void Stickman_collect_hatchet(Stickman* self);
+void Stickman_collect_logs(Stickman* self);
 void Stickman_collect_key(Stickman* self);
 void Stickman_display_info(Stickman* self);
 
