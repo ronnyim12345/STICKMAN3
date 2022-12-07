@@ -12,7 +12,7 @@ CC = $(CROSS_COMPILE)gcc
 ARCH= arm
 
 build: $(TARGET)
-$(TARGET): vga_gsensor.o ADXL345.o stickman.o tree.o hatchet.o door.o river.o treasureChest.o key.o
+$(TARGET): vga_gsensor.o ADXL345.o stickman.o tree.o hatchet.o door.o river.o treasureChest.o key.o bridge.o
 	$(CC) $(LDFLAGS)   $^ -o $@
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@

@@ -91,6 +91,17 @@ int main(int argc,char ** argv) {
             printf("id=%02Xh\r\n", id);
     } 
 	
+	// draw title screen
+	VGA_title_screen(virtual_base);
+	// while buttons are not pressed, display title screen
+	while(1)
+	{
+		buttons = PHYSMEM_32_reg(0xFF200050);
+		// break if buttons pressed
+		if (buttons != 0)
+			break;
+	}
+	
 	// draw environment
     VGA_drawAllObjects(virtual_base);
 	
@@ -110,6 +121,7 @@ int main(int argc,char ** argv) {
 	Hatchet* hatchet = Hatchet_create(50, 300);
 	Door* door = Door_create(260, 150);
 	Key* key = Key_create(200, 8);
+	Bridge* bridge = Bridge_create(0, 0);
 	
 	printf("\n\n");
 	TreasureChest_display_info(treasureChest);
@@ -126,6 +138,7 @@ int main(int argc,char ** argv) {
 				//printf("[%d]X=%d mg, Y=%d mg, Z=%d mg\r\n", cnt,(int16_t)szXYZ[0]*mg_per_digi, (int16_t)szXYZ[1]*mg_per_digi, (int16_t)szXYZ[2]*mg_per_digi);
 				
 				buttons = PHYSMEM_32_reg(0xFF200050);
+				
 				if (!gameOver) {
 					// if X is greater than 100
 					if ((int16_t)szXYZ[0]*mg_per_digi > 100){
@@ -287,8 +300,18 @@ int main(int argc,char ** argv) {
 						}
 						
 						//6TH ONE IS THE BRIDGE !!!
-						//(DRAWN IN VGA_functions.h)
-						
+						if (!bridge->hasBeenBuilt && (x1_new + STICKMAN_WIDTH >= (210 + (i*10/70)) && x1_new <= (242 + (i*10/70)) ) && (y1_new >= (350+i) && y1_new - STICKMAN_HEIGHT <= (351+i)) ) {
+							// reset coordinates before overlap
+							x1_new = x1_old;
+							y1_new = y1_old;
+							// check for stickman close to section of river and already has the logs
+							if (buttons != 0 && stickman->hasLogs) {
+								// call Bridge_build() to set hasBeenBuilt to true
+								Bridge_build(bridge);
+								// init Bridge
+								Bridge_init(bridge, 210, 350);
+							}
+						}
 						
 						//7TH RIVER SEGMENT:
 						if ((x1_new + STICKMAN_WIDTH >= (220 + (i*20/70)) && x1_new <= (253 + (i*20/70)) ) && (y1_new >= (420+i) && y1_new - STICKMAN_HEIGHT <= (421+i)) ) {
@@ -306,11 +329,9 @@ int main(int argc,char ** argv) {
 					VGA_box(240, 340, 242, 350, 0xF800, virtual_base);
 					VGA_box(250, 410, 252, 420, 0xF800, virtual_base);
 					
-					//draw bridge:
-					VGA_bridge(virtual_base);
-					
-					
-					
+					//draw bridge if hasBeenBuilt is true
+					if (bridge->hasBeenBuilt)
+						VGA_bridge(virtual_base);
 					
 					
 					//Moving Waves:
