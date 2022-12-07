@@ -116,11 +116,11 @@ int main(int argc,char ** argv) {
 	printf("\n\n");
 	Stickman_display_info(stickman);
 	
-	TreasureChest* treasureChest = TreasureChest_create(200, 1);
+	TreasureChest* treasureChest = TreasureChest_create(225, 80);
 	Tree* tree = Tree_create(85, 120);
-	Hatchet* hatchet = Hatchet_create(50, 300);
-	Door* door = Door_create(260, 150);
-	Key* key = Key_create(200, 8);
+	Hatchet* hatchet = Hatchet_create(125, 350);
+	Door* door = Door_create(20, 255);
+	Key* key = Key_create(225, 80);
 	Bridge* bridge = Bridge_create(0, 0);
 	
 	printf("\n\n");
@@ -173,7 +173,7 @@ int main(int argc,char ** argv) {
 							// update coordinates
 							TreasureChest_init(treasureChest, 0, 0);
 							//draws the key:
-							VGA_key(200, 8, virtual_base);
+							VGA_key(225, 80, virtual_base);
 						}
 					}
 					

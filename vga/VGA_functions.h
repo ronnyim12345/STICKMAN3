@@ -446,11 +446,11 @@ void VGA_drawAllObjects(void *virtual_base)
 	// draw inventory and its spaces
 	VGA_inventory(virtual_base);
 	// draw treasure chest, comprised of a main box and two superimposed boxes
-	VGA_treasureChest(200, 1, virtual_base);
+	VGA_treasureChest(225, 80, virtual_base);
 	// draw locked door
-	VGA_lockedDoor(260, 150, virtual_base);
+	VGA_lockedDoor(20, 255, virtual_base);
 	// draw hatchet
-	VGA_hatchet(50, 300, virtual_base);
+	VGA_hatchet(125, 350, virtual_base);
 	// draw river
 	VGA_river(130, virtual_base);
 	// draw tree
