@@ -96,6 +96,11 @@ int main(int argc,char ** argv) {
 	// while buttons are not pressed, display title screen
 	while(1)
 	{
+		VGA_box(102, 185, 102 + 83, 187 + 16, RED, virtual_base);
+		//VGA_box(102, 185, 102 + 83, 187 + 16, YELLOW, virtual_base);
+		VGA_box(102, 185, 102 + 83, 187 + 16, LIME_GREEN, virtual_base);
+		VGA_box(102, 185, 102 + 83, 187 + 16, BLUE, virtual_base);
+		
 		buttons = PHYSMEM_32_reg(0xFF200050);
 		// break if buttons pressed
 		if (buttons != 0)

@@ -51,8 +51,11 @@
 #define BLACK 0x0000
 #define WHITE 0xFFFF
 #define BROWN 0xF900
-#define YELLOW 0xFA701
-#define BLUE 0x0FFF
+#define RED 0xC4C4
+#define YELLOW 0xFCFC
+#define LIME_GREEN 0x5C5C 
+#define GREEN 0x3C3C
+#define BLUE 0x0F0F
 
 // box defines
 #define BOX_WIDTH 25

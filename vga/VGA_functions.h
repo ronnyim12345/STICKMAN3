@@ -481,7 +481,7 @@ void VGA_game_over(void *virtual_base)
 ****************************************************************************************/
 void VGA_title_screen(void *virtual_base)
 {
-	char text_title[60] = "SUPER STICKMAN RPG ADVENTURE 64: REVENGEANCE\0";
+	char text_title[50] = "SUPER STICKMAN RPG ADVENTURE 64: REVENGEANCE\0";
 	char text_start[30] = "PUSH BUTTON TO START\0";
 	char text_copyright1[40] = "(C) 2022 RONNY & FUNK U.S.A., INC.\0";
 	char text_copyright2[20] = "LICENSED BY\0";
@@ -490,14 +490,11 @@ void VGA_title_screen(void *virtual_base)
 	VGA_text_clear(virtual_base);
 	// clear screen
 	VGA_box(0, 0, X_MAX, Y_MAX, BLACK, virtual_base);
-	// draw game over text box
-	// VGA_unfilled_box(128, 217, 128 + 42, 217 + 19, 1, WHITE, BLACK, virtual_base);
-	// draw text "Game Over"
 	// only from 0,0 to 79,59
-	VGA_text(24, 28, text_title, virtual_base);
-	VGA_text(30, 32, text_start, virtual_base);
-	VGA_text(28, 36, text_copyright1, virtual_base);
-	VGA_text(33, 40, text_copyright2, virtual_base);
-	VGA_text(29, 44, text_copyright3, virtual_base);
+	VGA_text(14, 16, text_title, virtual_base);
+	VGA_text(26, 24, text_start, virtual_base);
+	VGA_text(19, 32, text_copyright1, virtual_base);
+	VGA_text(30, 36, text_copyright2, virtual_base);
+	VGA_text(24, 40, text_copyright3, virtual_base);
 }
 	
