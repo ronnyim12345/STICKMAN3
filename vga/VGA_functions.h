@@ -335,48 +335,48 @@ void VGA_tree(int x1, int y1, void *virtual_base)
 	VGA_box(x1, y1-20, x1+8, y1, 0xF800, virtual_base);
 
 	//left leaves
-	VGA_line(x1, y1-20, x1-20, y1-20, 0x7000, virtual_base);
-	VGA_line(x1-20, y1-20, x1-6, y1-34, 0x7000, virtual_base);
+	VGA_line(x1, y1-20, x1-20, y1-20, 0x3c00, virtual_base);
+	VGA_line(x1-20, y1-20, x1-6, y1-34, 0x3c00, virtual_base);
 
 	unsigned int i;
 	for (i = 20; i <= 44; i++) {
-	VGA_line(x1-20, y1-20, x1+4, y1-i, 0X7000, virtual_base);
+	VGA_line(x1-20, y1-20, x1+4, y1-i, 0X3c00, virtual_base);
 	}
 
-	VGA_line(x1-6, y1-34, x1-14, y1-34, 0x7000, virtual_base);
-	VGA_line(x1-14, y1-34, x1, y1-50, 0x7000, virtual_base);
+	VGA_line(x1-6, y1-34, x1-14, y1-34, 0x3c00, virtual_base);
+	VGA_line(x1-14, y1-34, x1, y1-50, 0x3c00, virtual_base);
 
 	for (i = 34; i <= 54; i++) {
-	VGA_line(x1-14, y1-34, x1+4, y1-i, 0X7000, virtual_base);
+	VGA_line(x1-14, y1-34, x1+4, y1-i, 0X3c00, virtual_base);
 	}
 
-	VGA_line(x1, y1-50, x1-10, y1-50, 0x7000, virtual_base);
-	VGA_line(x1-10, y1-50, x1+4, y1-70, 0x7000, virtual_base);
+	VGA_line(x1, y1-50, x1-10, y1-50, 0x3c00, virtual_base);
+	VGA_line(x1-10, y1-50, x1+4, y1-70, 0x3c00, virtual_base);
 
 	for (i = 50; i <= 70; i++) {
-	VGA_line(x1-10, y1-50, x1+4, y1-i, 0X7000, virtual_base);
+	VGA_line(x1-10, y1-50, x1+4, y1-i, 0X3c00, virtual_base);
 	}
 
 	//right leaves
-	VGA_line(x1+8, y1-20, x1+28, y1-20, 0x7000, virtual_base);
-	VGA_line(x1+28, y1-20, x1+16, y1-34, 0x7000, virtual_base);
+	VGA_line(x1+8, y1-20, x1+28, y1-20, 0x3c00, virtual_base);
+	VGA_line(x1+28, y1-20, x1+16, y1-34, 0x3c00, virtual_base);
 
 	for (i = 20; i <= 48; i++) {
-	VGA_line(x1+28, y1-20, x1+4, y1-i, 0X7000, virtual_base);
+	VGA_line(x1+28, y1-20, x1+4, y1-i, 0X3c00, virtual_base);
 	}
 
-	VGA_line(x1+16, y1-34, x1+24, y1-34, 0x7000, virtual_base);
+	VGA_line(x1+16, y1-34, x1+24, y1-34, 0x3c00, virtual_base);
 	//VGA_line(x1+24, y1-34, x1+10, y1-50, 0x7000, virtual_base);
 
 	for (i = 34; i <= 54; i++) {
-	VGA_line(x1+24, y1-34, x1+4, y1-i, 0X7000, virtual_base);
+	VGA_line(x1+24, y1-34, x1+4, y1-i, 0X3c00, virtual_base);
 	}
 
-	VGA_line(x1+10, y1-50, x1+18, y1-50, 0x7000, virtual_base);
-	VGA_line(x1+18, y1-50, x1+4, y1-70, 0x7000, virtual_base);
+	VGA_line(x1+10, y1-50, x1+18, y1-50, 0x3c00, virtual_base);
+	VGA_line(x1+18, y1-50, x1+4, y1-70, 0x3c00, virtual_base);
 
 	for (i = 50; i <= 70; i++) {
-	VGA_line(x1+18, y1-50, x1+4, y1-i, 0X7000, virtual_base);
+	VGA_line(x1+18, y1-50, x1+4, y1-i, 0X3c00, virtual_base);
 	}
 
 }
@@ -388,15 +388,15 @@ void VGA_key(int x1, int y1, void *virtual_base)
 {	
 	
 	//rod
-	VGA_box(x1, y1, x1+20, y1+6, 0xF800, virtual_base);
+	VGA_box(x1, y1, x1+20, y1+6, 0xFcfc, virtual_base);
 	//1st notch
-	VGA_box(x1+4, y1+6, x1+7, y1+12, 0xF800, virtual_base);
+	VGA_box(x1+4, y1+6, x1+7, y1+12, 0xFcfc, virtual_base);
 	//2nd notch
-	VGA_box(x1+10, y1+6, x1+13, y1+12, 0xF800, virtual_base);
+	VGA_box(x1+10, y1+6, x1+13, y1+12, 0xFcfc, virtual_base);
 	
 	
 	//handle
-	VGA_box(x1+20, y1-6, x1+29, y1+12, 0xF800, virtual_base);
+	VGA_box(x1+20, y1-6, x1+29, y1+12, 0xFcfc, virtual_base);
 	//hole
 	VGA_box(x1+22, y1-3, x1+26, y1+10, BLACK, virtual_base);
 }

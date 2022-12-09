@@ -134,6 +134,14 @@ int main(int argc,char ** argv) {
 	int loop = 0;
 	short gameOver = 0;
 	
+	
+	//TIMER STUFF:
+	int Timer = 0;
+	int seconds = 0;
+	char text_message[40] = "TIME";
+	char text_time1[10];
+	
+	
 	// gsensor loop to display 3-axis acceleration data
 	while(bSuccess && (max_cnt == 0 || cnt < max_cnt)){
 		if (ADXL345_IsDataReady(file)){
@@ -143,6 +151,18 @@ int main(int argc,char ** argv) {
 				//printf("[%d]X=%d mg, Y=%d mg, Z=%d mg\r\n", cnt,(int16_t)szXYZ[0]*mg_per_digi, (int16_t)szXYZ[1]*mg_per_digi, (int16_t)szXYZ[2]*mg_per_digi);
 				
 				buttons = PHYSMEM_32_reg(0xFF200050);
+				
+				
+				//MORE TIMER STUFF:
+				Timer = Timer + 1;
+				seconds = Timer/90;
+				printf("Timer = %d\n", seconds);
+				Timer = Timer + 1;
+				sprintf(text_time1, "%d", seconds);
+				//shows the time:
+				VGA_text(62, 2, text_message, virtual_base);
+				VGA_text(64, 3, text_time1, virtual_base);
+				
 				
 				if (!gameOver) {
 					// if X is greater than 100
@@ -379,6 +399,19 @@ int main(int argc,char ** argv) {
 	
 	// display game over message
 	VGA_game_over(virtual_base);
+	
+	//SHOWS TIME AT THE END:
+	char text_message1[40] = "Time = ";
+	char text_message2[40] = "seconds";
+	char text_time[10];
+	sprintf(text_time, "%d", seconds);
+	VGA_box(0, 0, X_MAX, Y_MAX, BLACK, virtual_base);
+	// draw game over text box
+	VGA_unfilled_box(128, 217, 128 + 42, 217 + 19, 1, WHITE, BLACK, virtual_base);
+	VGA_text(29, 40, text_message1, virtual_base);
+	VGA_text(36, 40, text_time, virtual_base);
+	VGA_text(39, 40, text_message2, virtual_base);
+	
 	
 	// if unsuccessful / close file
     if (!bSuccess)
